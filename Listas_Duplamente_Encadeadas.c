@@ -1,3 +1,8 @@
+/*
+ *@author : Márcio Alexandre Freire Sindeaux
+ *@professor : Filippe Giuliani (IESB)
+ *@Date : 06/09/2018
+ */
 #include<stdio.h>
 #include<stdlib.h>
 typedef struct mainList{
@@ -10,6 +15,7 @@ typedef struct dado{
 	struct dado * proximo;
 	int valor;
 }dado;
+
 //Prototipação de Funções
 
 dado * alocaDado();

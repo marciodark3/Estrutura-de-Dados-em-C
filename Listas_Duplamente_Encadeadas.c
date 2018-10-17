@@ -5,11 +5,13 @@
  */
 #include<stdio.h>
 #include<stdlib.h>
+
 typedef struct mainList{
 	int qtdDados;
 	struct dado * inicio;
 	struct dado * final;
 }mainList;
+
 typedef struct dado{
 	struct dado * anterior;
 	struct dado * proximo;
@@ -26,8 +28,8 @@ void mainMostraDados(mainList * l);
 void mostrarDadosInicio(dado * first);
 void mostrarDadosFinal(dado * last);
 void mainRetirarDado(mainList * l);
-void retiraDadoInicio(dado * first);
-void retiraDadoFinal(dado * last);
+void retiraDadoInicio(mainList * l);
+void retiraDadoFinal(mainList * l);
 //Fim da prototipação 
 
 int main(){
@@ -43,12 +45,14 @@ int main(){
 		switch(opc){
 			case 1:
 				incluirDados(s);
+
 			break;
 			case 2:
 				mainMostraDados(s);
 			break;
 			case 3:
 				mainRetirarDado(s);
+            break;
 			case 0:
 				free(s);
 				printf("\nDesligando sistema ...\n");
@@ -59,44 +63,74 @@ int main(){
 		}
 	}
 }
-void retiraDadoFinal(dado * last){
+void retiraDadoFinal(mainList * l){
 	int p;
 	printf("\nDigite o numero que deseja exclouir :\t");
 	scanf("%d",&p);
-	dado * aux = last;
-	while(aux != NULL){
-		if(aux->valor == p){
-			aux->anterior->proximo = aux->proximo;
-			aux->proximo->anterior = aux->anterior;
-			printf("\nItém excuido com sucesso \n");
-		}
-		aux = aux->proximo;
-	}
+	dado * aux = l->final;
+    if(aux->valor == p){
+        l->final = aux ->anterior;
+        l->final->proximo = NULL;
+        free(aux);
+        l->qtdDados--;
+        printf("\nItém excuido com sucesso \n");
+    }else{
+        while(aux != NULL){
+            if(aux->valor == p){
+                if(aux->valor == l->inicio->valor){
+                    aux->anterior->proximo = aux->proximo;
+                    aux->proximo->anterior = aux->anterior;
+                    l->qtdDados--;
+                }else{
+                    aux->proximo->anterior = NULL;
+                    l->inicio = aux->proximo;
+                }    
+                free(aux);
+                printf("\nItém excuido com sucesso \n");
+            }
+            aux = aux->proximo;
+        }
+    }
 }
-void retiraDadoInicio(dado * first){
+void retiraDadoInicio(mainList * l){
 	int p;
 	printf("\nDigite o numero que deseja exclouir :\t");
 	scanf("%d",&p);
-	dado * aux = first;
-	while(aux != NULL){
-		if(aux->valor == p){
-			aux->anterior->proximo = aux->proximo;
-			aux->proximo->anterior = aux->anterior;
-			printf("\nItém excuido com sucesso \n");
-		}
-		aux = aux->proximo;
-	}
-
+    dado * aux = l->inicio;
+    if(aux->valor == p){
+        l->inicio = aux->proximo;
+        aux->proximo->anterior = NULL;
+        free(aux);
+        l->qtdDados--;
+        printf("\nItém excuido com sucesso \n");
+    }else{
+        while(aux != NULL){
+		    if(aux->valor == p){
+                if(aux->valor != l->final->valor){
+                    aux->anterior->proximo = aux->proximo;
+			        aux->proximo->anterior = aux->anterior;
+                    l->qtdDados--;
+                }else{
+                    aux->anterior->proximo = NULL;
+                    l->final = aux->anterior;
+                }
+                free(aux);			    
+			    printf("\nItém excuido com sucesso \n");
+                break;
+		    }
+		    aux = aux->proximo;
+	    }
+    }
 }
 void mainRetirarDado(mainList * l){
-	int esc;
+	int p;
 	printf("[1] Para Comecar a buscar pelo inicio\n");
 	printf("[2] Para Comecar a buscar pelo final\n");
-	scanf("%d",&esc);
-	if(esc == 1){
-		retiraDadoInicio(l->inicio);
-	}else if(esc == 2){
-		retiraDadoFinal(l->final);
+	scanf("%d",&p);
+	if(p == 1){
+		retiraDadoInicio(l);
+	}else if(p == 2){
+		retiraDadoFinal(l);
 	}else{
 		printf("\n\nNumero Digitado Invalido \n\n");
 	}

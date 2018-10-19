@@ -1,4 +1,4 @@
-s/*
+/*
  * @Autor do Exercicio : Marcio Alexandre Freire Sindeaux 
  * @Data : 18/10/2018
  * 

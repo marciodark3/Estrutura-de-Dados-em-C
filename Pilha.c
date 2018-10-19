@@ -80,6 +80,7 @@ void inserirDado(mainStack *s){
     fgets(d->nome,100,stdin);
     d->prox = s->inicio;
     s->inicio = d;
+	s->qtdDados++;
 }
 
 void retirarDado(mainStack *s){
@@ -88,6 +89,7 @@ void retirarDado(mainStack *s){
         printf("\n\n CHAMANDO \t %s\n\n",aux->nome);
         s->inicio = aux->prox;
         free(aux);
+		s->qtdDados--;
     }else{
         printf("\nLista sem ninguem \n");
     }

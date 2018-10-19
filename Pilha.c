@@ -2,7 +2,7 @@
  * @Autor do Exercicio : Marcio Alexandre Freire Sindeaux 
  * @Data : 18/10/2018
  * 
- * Jesus, uma pessoa sensata, em Mateus 20:16 diz "Portanto os ultimos serão os primeiro e os primeiros serão os ultimos".
+ * Jesus, uma pessoa sensata, em Mateus 20:16 diz "Portanto os ultimos serão os primeiros e os primeiros serão os ultimos".
  *
  * Um dia, no paraiso, Jesus tem uma reunião com deus e tenta achar uma forma de automatizar isso, pra não ficar uma 
  * coisa massante na hora que o povo for entrar.

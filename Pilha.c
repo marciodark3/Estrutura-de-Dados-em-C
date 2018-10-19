@@ -1,4 +1,4 @@
-/*
+s/*
  * @Autor do Exercicio : Marcio Alexandre Freire Sindeaux 
  * @Data : 18/10/2018
  * 
@@ -42,7 +42,7 @@ dado * alocaDado();
 int main(void){
     int opc= -1;
     mainStack * s = alocaPilha();
-    while(opc != 0){
+	while(opc != 0){
         printf("[1] Colocar pessoa \n");
         printf("[2] Chamar pessoas\n");
         printf("[3] Mostrar pessoas na 'Lista'\n");
@@ -66,6 +66,9 @@ int main(void){
             case 3:
                 mostrarDados(s->inicio,0);
             break;
+	    case 4 :
+		printf("\n\nExistem %d pessoas na lista ",l->qtdDados);
+	    break;
             default:
                 printf("\n\nNumero Inserido Invalido\n\n");
             break;
@@ -80,7 +83,7 @@ void inserirDado(mainStack *s){
     fgets(d->nome,100,stdin);
     d->prox = s->inicio;
     s->inicio = d;
-	s->qtdDados++;
+    s->qtdDados++;
 }
 
 void retirarDado(mainStack *s){

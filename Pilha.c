@@ -67,7 +67,7 @@ int main(void){
                 mostrarDados(s->inicio,0);
             break;
 	    case 4 :
-		printf("\n\nExistem %d pessoas na lista ",l->qtdDados);
+		printf("\n\nExistem %d pessoas na lista ",s->qtdDados);
 	    break;
             default:
                 printf("\n\nNumero Inserido Invalido\n\n");

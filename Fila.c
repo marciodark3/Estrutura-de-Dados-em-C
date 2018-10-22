@@ -21,7 +21,7 @@ typedef struct pessoa{
 }pessoa;
 
 typedef struct mainFila{
-	struct pessoa * inicio;
+	struct pessoa * final;
 }mainLista;
 
 mainFila * alocaFila();
@@ -52,14 +52,14 @@ int main(void){
 				chamarPessoa(f);
 			break;
 			case 3:
-				mostrarPessoa(f->inicio);
+				mostrarPessoa(f->final);
 			break;
 			case 4:
 				free(f->inicio);
 				f->inicio = NULL;
 			break;
 			case 5:
-				mostrarTodasPessoas(f->inicio);
+				mostrarTodasPessoas(f->final);
 			break;
 			default:
 				printf("\n\nNumero Inserido Invalido\n\n");
@@ -70,6 +70,10 @@ int main(void){
 	return(0);
 }
 void mostrarTodasPessoas(pessoa * p){
+	/*
+	 * Funcionamento recursivo.
+	 * Enquanto não chegar ao primeiro elemento , ele vai mostrar o nome do elemento atual e passar o proximo como parametro.
+	 */
 	if(p == NULL){
 		printf("\n\n");
 	}else{
@@ -79,6 +83,11 @@ void mostrarTodasPessoas(pessoa * p){
 }
 
 void mostrarPessoa(pessoa * p){
+	/*
+	 * Funcionamento recursivo.
+	 * Enquanto não chegar ao primeiro elemento, a função chama a si mesma, mandando o proximo elemento como parametro.
+	 * Quando chegar no primeiro, ele mostra o nome da pessoa.
+	 */
 	if(p->prox == NULL){
 		printf("\n\nPROXIMA PESSOA \t %s\n\n",p->nome);
 	}else{
@@ -87,12 +96,23 @@ void mostrarPessoa(pessoa * p){
 }
 
 void chamarPessoa(mainFila * f){
-	if(f->inicio != NULL){
-		struct pessoa * aux = f->inicio;
+	/*
+	 * Se a fila não tiver elementos, vai aparecer na tela "FILA VAZIA".
+	 * Se a fila não está vazia, se faz necessária a verificação de um caso especial : a fila com apenas 1 elemento.
+	 * 	->Caso a fila tenha apenas um elemento, f->final tem que voltar a apontar para "NULL",
+	 * 	->se a fila tivert mais de um elemento a seguinte lógica é executada :
+	 *		--Vá até o segundo elemento da fila(vamos tratar ele como "aux");
+	 *		--Mostre o primeiro elemento da lista.	printf("%s",aux->prox->nome);
+	 *		--exclua o primeiro elemento da lista.	free(aux->prox)
+	 *		--Faça o elemento atual não apontar para mais ninguem.	(aux->prox = NULL)
+	 * Dessa forma a lista vai ser executada de forma correta.
+	 */
+	if(f->final != NULL){
+		struct pessoa * aux = f->final;
 		if(aux->prox == NULL){
 			printf("\n\nCHAMANDO \t %s\n\n",aux->nome);
 			free(aux);
-			f->inicio = NULL;
+			f->final = NULL;
 		}else{
 			while(aux != NULL){
 				if(aux->prox->prox == NULL){
@@ -111,12 +131,16 @@ void chamarPessoa(mainFila * f){
 }
 
 void inserirPessoa(mainFila * f){
+	/*
+	 * Nessa lógica, sempre será inserida uma pessoa no fim da fila.
+	 * f->final Indica aonde fica o fim da fila.
+	 */
 	fflush(stdin);
 	struct pessoa * aux = alocaPessoa();
 	printf("\nDigite o nome da pessoa : \n ");
 	fgets(aux->nome,100,stdin);
-	aux->prox = f->inicio;
-	f->inicio = aux;
+	aux->prox = f->final;
+	f->final = aux;
 }
 
 mainFila * alocaFila(){
@@ -125,7 +149,7 @@ mainFila * alocaFila(){
 		printf("\nNão foi possivel criar fila por falta de memória");
 		exit(1);
 	}else{
-		f->inicio = NULL;
+		f->final = NULL;
 		return(f);	
 	}
 }

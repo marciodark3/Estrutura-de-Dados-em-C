@@ -1,6 +1,7 @@
 /*
- * @Autor do Exercicio : Marcio Alexandre Freire Sindeaux 
- * @Data : 22/10/2018
+ * @Autor do exercicio : Márcio Alexandre Freire Sindeaux
+ * @Data : 23/10/2018
+ * @E-mail : sindeaux1999@hotmail.com
  * 
  * Burger Things, uma rede de alimentos Task Food, pensando em melhor atender seus clientes resolve chamar seus clientes pelo nome.
  * Com o tempo, a clientela foi aumentando, e memorizar o nome de todos os clientes estava ficando muito dificil;

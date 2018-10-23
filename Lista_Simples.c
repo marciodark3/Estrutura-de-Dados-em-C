@@ -50,6 +50,7 @@ int main (void){
 		printf("[3] - Calcular preco da lista\n");
 		printf("[4] - Mostrar toda a lista\n");
 		printf("[0] - Sair\n");
+
 		scanf("%d",&opc);
 		switch(opc){
 			case 0:
@@ -87,6 +88,15 @@ item * alocaitem(){
 	return(l);
 }
 void inserirItem(mainList * l){
+	/*
+	 * Na minha lógica, O primeiro item aponta para NULL, o segundo aponta para o primeiro, o terceiro aponta para 
+	 * o segundo. Portanto o ultimo aponta para o penultimo, que aponta para o antepenultimo, andando dessa forma
+	 * até o primeiro.
+	 *
+	 * Para inserção de dados foi usada a seguinte lógica: 
+	 * 	->Meu novo dado vai apontar para o ultimo item da lista, logo após, ele vai se tornar o ultimo dado
+	 *	  da lista até um novo chegar.
+	 */
 	item * aux = alocaitem(); 
 	char ent[100];
 	printf("\n\nDigite o nome do produto \t :\t");
@@ -103,12 +113,22 @@ void inserirItem(mainList * l){
 }
 
 void retirarItem(mainList * l){
+	/*
+	 * Do jeito que eu programei, cada item da lista tem um identificador. Como gerenciar strings em C exige um 
+	 * certo dominio a mais, optei por mecher com muneros identificadores, unicos para cada item da lista, com 
+	 * campos NUNCA vazios. Seria algo como chaves primarias de banco de dados
+	 *
+	 * Para retirar o dado da lista, vamos ultilizar desses numeros identificadores. 
+	 */
 	int num;
 	mostrarLista(l);
 	printf("\n\nUSANDO O CAMPO 'ID', DIGITE O ID DO PRODUTO QUE DESEJA EXCLUIR\n\n");
 	printf("Numero : \t");
 	scanf("%d",&num);
 	if((num>l->qtd)||(num<0)){
+		/*
+		 * Se o numero digitado for maior que o gerador do identificador ou menor que zero, esse item não existe
+		 */
 		printf("\n\nID DIGITADO INVALIDO \n\n");
 	}else{
 		item * aux = l->inicio;
@@ -146,6 +166,7 @@ void calcularPrecoLista(mainList * l){
 }
 
 void mostrarLista(mainList * l){
+	
 	item * aux = l->inicio;
 	if(aux == NULL){
 		printf("\n\nNao exitem itens na lista\n\n");

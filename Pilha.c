@@ -1,6 +1,7 @@
 /*
- * @Autor do Exercicio : Marcio Alexandre Freire Sindeaux 
- * @Data : 18/10/2018
+ * @Autor do exercicio : Márcio Alexandre Freire Sindeaux
+ * @Data : 23/10/2018
+ * @E-mail : sindeaux1999@hotmail.com
  * 
  * Jesus, uma pessoa sensata, em Mateus 20:16 diz "Portanto os ultimos serão os primeiros e os primeiros serão os ultimos".
  *

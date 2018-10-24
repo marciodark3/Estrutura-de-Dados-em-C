@@ -132,6 +132,16 @@ void retirarItem(mainList * l){
 		printf("\n\nID DIGITADO INVALIDO \n\n");
 	}else{
 		item * aux = l->inicio;
+        /*
+         * Se o primeiro item for o procurado, a lista simplesmente vai apontar para o proximo elemento, e o 
+         * elemento escolhido vai ser excluido.
+         * 
+         * Senão segue a seguinte logica:
+         *  ->É criada a varivel antaux(ANTerior a AUXiliar) que, como o proprio nome diz, vai ficar antes da aux
+         *  ->Aux sai percorrendo a lista junto co ant aux
+         *  ->quando aux encontrar o item que procurava, antaux vai apontar para o item depois de aux 
+         *  ->aux é excluido do sistema
+         */
 		if(aux->id == num){
 			l->inicio = aux->prox;
 			free(aux);
@@ -152,6 +162,11 @@ void retirarItem(mainList * l){
 }
 
 void calcularPrecoLista(mainList * l){
+	/*
+	 * Quando existir itens na lista, um ponteiro aux vai percorrer a lista toda, item a item, multiplicando
+	 * o preço pela quantidade de itens e adicionanndo a variavel valor, dessa forma o vator total das compras 
+	 * vai ser achado.
+	 */
 	item * aux = l->inicio;
 	if(aux == NULL){
 		printf("\n\nNão ha itens na lista\n\n");
@@ -166,7 +181,6 @@ void calcularPrecoLista(mainList * l){
 }
 
 void mostrarLista(mainList * l){
-	
 	item * aux = l->inicio;
 	if(aux == NULL){
 		printf("\n\nNao exitem itens na lista\n\n");

@@ -20,6 +20,45 @@ int qtd;
 int main(void){
 	printf("\nDigite a quantidade de Produtos no banco de dados\t\:\t");
 	scanf("%d",&qtd);
-	ligacao l[qtd]	
-	
+	produto l[qtd]	;
+    int opc;
+    int p,i,j;
+    produto aux;
+    printf("\nPor favor preencha os dados a seguir\n");
+    for( i = 0 ; i < qtd ; i++ ){
+        fflush(stdin);
+        printf("\nDigite o nome do %do.p produto \t",i+1);
+        fgets(l[i].nomeProduto,100,stdin);
+        fflush(stdin);
+        printf("\n\nDigite o ano de fabricacao do produto \t");
+        scanf("%d",&l[i].anoDeProducao);
+    }
+    printf("\n\n");
+    printf("Digite o numero da opção que deseja\n");
+    printf("[1] Ordenar do mais antigo para o mais novo\n");
+    printf("[2] Ordenar do mais novo para o mais antigo\n");
+    scanf("%d",&opc);
+    
+    for(i = 0 ; i < qtd - 1 ; i++){
+        for( j = i + 1 ; j < qtd ; j++ ){
+            if(l[i].anoDeProducao > l[j].anoDeProducao){
+                aux = l[i];
+                l[i]= l[j];
+                l[j] = aux;
+            }
+        }
+    }
+    
+    if(opc == 1){
+        for(i=0;i<qtd;i++){
+            printf("Ano de fabricacao : %d \nProduto %s\n-------------------------------------------",l[i].anoDeProducao,l[i].nomeProduto);
+            
+        }
+    }else if(opc == 2){
+        for( i = qtd - 1 ; i >= 0; i-- ){
+            printf("Ano de fabricacao : %d \nProduto %s\n-------------------------------------------",l[i].anoDeProducao,l[i].nomeProduto);
+            
+        }
+    }
+    return(0);
 }

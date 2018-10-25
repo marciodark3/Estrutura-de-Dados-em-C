@@ -1,3 +1,7 @@
+/*
+ * Falta ajustar pequenos detalhes de livros e seções
+ */
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -222,15 +226,89 @@ void retiraSecao(mainList * l){
                 }
             }
             if(conta == 0){
-                printf("Não pode ser excluido ... Nome Incopativel")
+                printf("Não pode ser excluido ... Nome Incopativel");
             }
         }
     }
 }
 
 
-void insereLivro(mainList * l);
-void retiraLivro(mainList * l);
+void insereLivro(mainList * l){
+	livro * b = alocaLivro();
+	printf("\nDigite o nome do livro que deseja Inserir\n");
+	fflush(stdin);
+	fgets(b->titulo,100,stdin);
+	printf("\n\n");
+	printf("Digite o numero da secao que voce deseja Incluir Livro : \n");
+	listaSecoes(l);
+	printf("\t[-1] - Criar secao\n");
+	printf("\t[0] - Sair do programa\n");
+	int opc;
+	scanf("%d",&opc);
+	if(opc > 0){
+		secao * s = l->inicio;
+		for(int i=1;i<opc;i++){
+			s = s->prox;
+		}
+		b->prox = s->inicio;
+		s->inicio = b;
+		l->qtdLivros++;
+		s->qtdSecao++;
+	}else{
+		if(opc == 0){
+			printf("\n\n TUDO BEM ... \n\n");
+		}else if(opc == -1){
+			criaSecao(l);
+			secao * s = l->inicio;
+			if(s->prox == NULL){
+				b->prox = s->inicio;
+				s->inicio = b;
+				l->qtdLivros++;
+				s->qtdSecao++;
+			}else{
+				while(s->prox != NULL){
+					s = s->prox;
+				}
+				b->prox = s->inicio;
+				s->inicio = b;
+				l->qtdLivros++;
+				s->qtdSecao++;
+			}
+		}
+	}	
+}
+
+void retiraLivro(mainList * l){
+	printf("\nDigite o Tilulo do Livro : \t");
+	char nome[100];
+	fflush(stdin);
+	fgets(nome,100,stdin);
+	secao * s = l->inicio;
+	livro * b;
+	if(l->inicio != NULL){
+		int conta;
+		while(s != NULL){
+			b = s->inicio;
+			while(b != NULL){
+				if(strcmp(b->prox->titulo,nome) == 0){
+					livro * aux = b->prox;
+					b->prox = aux->prox;
+					free(aux);
+					printf("\n\nLIVRO RETIRADO COM SUCESSO\n\n");
+					conta++;
+				}
+				
+			}
+			s=s->prox;
+		}
+		if(conta == 0){
+			printf("\n\nNenhum livro com esse titulo cadastrado\n\n");
+		}
+	}else{
+		printf("\n\nNenhum livro Cadastrado\n\n");
+	}
+		
+}
 
 void mostraSecao(secao * s){
     printf("\n\n%s\n",s->nome);
@@ -239,8 +317,8 @@ void mostraSecao(secao * s){
         printf("Sendo eles : \n");
         livro * auxb = s->inicio;
         while(auxb != NULL){
-            printf("-----------------------------------------------------\n");
-            printf("Livro : %s\n",auxb->titulo);
+            printf("\n-----------------------------------------------------\n");
+            printf("Livro : %s",auxb->titulo);
             auxb = auxb->prox;
         }
     }
@@ -252,7 +330,7 @@ void mostraSecaoMain(mainList * l){
         int escolha;
         scanf("%d",&escolha);
         secao * aux = l->inicio;
-        for(int i=1;i<=escolha;i++){
+        for(int i=1;i<escolha;i++){
             aux = aux->prox;
         }
         mostraSecao(aux);
@@ -265,7 +343,7 @@ void mostraQuantidadeSecao(mainList * l){
     int escolha;
     scanf("%d",&escolha);
     secao * aux = l->inicio;
-    for(int i=1;i<=escolha;i++){
+    for(int i=1;i<escolha;i++){
         aux = aux->prox;
     }
     printf("Essa lista possui %d livros",aux->qtdSecao);
@@ -277,9 +355,11 @@ void listaSecoes(mainList * l){
     if(aux == NULL){
         printf("\n\nNenhuma secao cadastrada\n\n");
     }else{
+    	printf("\n");
         while(aux != NULL){
             printf("[%d] - %s",p,aux->nome);
             aux = aux->prox;
+            p++;
         }
     }
 }

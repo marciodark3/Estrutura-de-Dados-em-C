@@ -51,12 +51,12 @@ int main(void){
     
     if(opc == 1){
         for(i=0;i<qtd;i++){
-            printf("Ano de fabricacao : %d \nProduto %s\n-------------------------------------------",l[i].anoDeProducao,l[i].nomeProduto);
+            printf("Ano de fabricacao : %d \nProduto %s\n-------------------------------------------\n",l[i].anoDeProducao,l[i].nomeProduto);
             
         }
     }else if(opc == 2){
         for( i = qtd - 1 ; i >= 0; i-- ){
-            printf("Ano de fabricacao : %d \nProduto %s\n-------------------------------------------",l[i].anoDeProducao,l[i].nomeProduto);
+            printf("Ano de fabricacao : %d \nProduto %s\n-------------------------------------------\n",l[i].anoDeProducao,l[i].nomeProduto);
             
         }
     }

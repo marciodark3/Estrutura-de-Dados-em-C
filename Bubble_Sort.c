@@ -38,8 +38,6 @@ int main(void){
          * Não por outro, eles levam o dado adiquirido para o endereço NULL de memória
          */
         scanf("%s",NULL);
-        scanf("%d",NULL);
-        scanf("%f",NULL);
         scanf("%[^\n]s",&l[i].nomeProduto);
         fflush(stdin);
         printf("\n\nDigite o ano de fabricacao do produto \t");

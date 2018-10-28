@@ -9,6 +9,7 @@
  * O seu trabalho é coletar os dados do banco de dados e fazer o que o dono te pediu.
  */
 #include<stdio.h>
+#include<libio.h>
 #include<stdlib.h>
 
 typedef struct produto{
@@ -18,8 +19,11 @@ typedef struct produto{
 int qtd;
 
 int main(void){
-	printf("\nDigite a quantidade de Produtos no banco de dados\t\:\t");
+	printf("\nDigite a quantidade de Produtos no banco de dados\t:\t");
 	scanf("%d",&qtd);
+    fflush(stdin);
+    fflush(stdout);
+    fflush(stderr);
 	produto l[qtd]	;
     int opc;
     int p,i,j;
@@ -27,8 +31,16 @@ int main(void){
     printf("\nPor favor preencha os dados a seguir\n");
     for( i = 0 ; i < qtd ; i++ ){
         fflush(stdin);
-        printf("\nDigite o nome do %do.p produto \t",i+1);
-        fgets(l[i].nomeProduto,100,stdin);
+        printf("\nDigite o nome do %do.p produto \t\n",i+1);
+
+        /*
+         * Os scanf abaixo são para pegar qualquer tipo de entrada que o computador possa dar com o lixo de memória
+         * Não por outro, eles levam o dado adiquirido para o endereço NULL de memória
+         */
+        scanf("%s",NULL);
+        scanf("%d",NULL);
+        scanf("%f",NULL);
+        scanf("%[^\n]s",&l[i].nomeProduto);
         fflush(stdin);
         printf("\n\nDigite o ano de fabricacao do produto \t");
         scanf("%d",&l[i].anoDeProducao);
@@ -38,7 +50,9 @@ int main(void){
     printf("[1] Ordenar do mais antigo para o mais novo\n");
     printf("[2] Ordenar do mais novo para o mais antigo\n");
     scanf("%d",&opc);
-    
+    /*
+     * Nessa parte abaixo ocorre o bubble sort
+     */
     for(i = 0 ; i < qtd - 1 ; i++){
         for( j = i + 1 ; j < qtd ; j++ ){
             if(l[i].anoDeProducao > l[j].anoDeProducao){

@@ -70,6 +70,7 @@ int main(void){
 		scanf("%d",&opc);
 		switch(opc){
 			case 0:
+				
 			break;
 			case 1:
 				inserePessoa(l);
@@ -83,7 +84,7 @@ int main(void){
 			case 4:
 				ordenaMatricula(l);
 			break;
-            case 10:
+            case 5:
                 mostrarLista(l);
             break;
 			default:

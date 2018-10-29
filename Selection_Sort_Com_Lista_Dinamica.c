@@ -140,20 +140,36 @@ void ordenaCPF(mainList * l){
     mostrarLista(l);
 }
 
-
 void buscaPessoa(mainList * l){
-    long int mat;
-    printf("\n\nDIGITE A MATRICULA DA PESSOA QUE VAI SER ACHADA \t:\t");
-    scanf("%d",&mat);
-    pessoa * aux = l->inicio;
-    while(aux != NULL){
-        if(aux->dados.matricula == mat){
-            printf("\nPessoa %s Encontrada \n",aux->dados.nome);
-            printf("Matricula : %ld",aux->dados.matricula);
-            printf("\nCPF : %ld\n\n",aux->dados.cpf);
-        }
-        aux = aux->proximo;
-    }
+    pessoa * aux;
+	int mat;
+	printf("\nDigite a matricula da pessoa : \t");
+	scanf("%d",&mat);
+	if(l->inicio == NULL){
+		printf("\n\nNão foi cadastrado nenhuma pessoa \n\n");
+	}else{
+		aux = l->inicio;
+		if(aux->proximo == NULL){
+			if(aux->dados.matricula == mat){
+				printf("Pessoa : %s",aux->dados.nome);
+			}else{
+				printf("\n\nItem não encontrado \n\n");
+			}
+		}else{
+			int cont = 0;
+			while(aux != 0){
+				if(aux->dados.matricula == mat){		
+					printf("Pessoa : %s",aux->dados.nome);
+					cont ++;
+					break;
+				}
+				aux=aux->proximo;
+			}
+			if(cont==0){
+				printf("\n\nItem não encontrado\n\n");
+			}
+		}
+	}
 }
 
 void inserePessoa(mainList * l){
@@ -222,3 +238,5 @@ void mostrarLista(mainList * l){
         aux = aux->proximo;
     }
 }
+
+

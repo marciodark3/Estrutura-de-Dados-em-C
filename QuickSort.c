@@ -8,7 +8,7 @@
 	A = A - B;\
 	printf("Dados trocados ; A = %d, e B = %d\n",A,B);
 	
-#define max 10
+#define max 100000
 
 void quickSort(int v[] , int inicio,int fim);
 void bubbleSort(int v[], int fim);

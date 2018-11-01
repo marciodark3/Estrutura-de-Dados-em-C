@@ -52,7 +52,7 @@ void bubbleSort(int v[],int fim){
 	printf("\n\n\nVetor \n\t");
 	/*for(int i = 0 ; i < max ; i++){
 		printf("\t%d",v[i]);
-	}*/
+	}*/ 
 }
 
 void quickSort(int v[] , int inicio,int fim){

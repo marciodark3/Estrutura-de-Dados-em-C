@@ -6,7 +6,7 @@
 	A = A + B;\
 	B = A - B;\
 	A = A - B;\
-	printf("Dados trocados ; A = %d, e B = %d\n",A,B);
+	//printf("Dados trocados ; A = %d, e B = %d\n",A,B);
 	
 #define max 100000
 
@@ -81,7 +81,7 @@ void quickSort(int v[] , int inicio,int fim){
 				}
 			}
 		}
-		if(v[fim] != v[inicio+1]){
+		if( fim != inicio+1){
 			if(pivot == fim){
 				quickSort(v,inicio,pivot-1);
 			}else if(pivot == inicio){

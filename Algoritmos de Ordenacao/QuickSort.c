@@ -1,3 +1,7 @@
+/*
+ *@Autor : Marcio Alexandre Freire Sindeaux
+ *@Data : 12/11/2018
+ */
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>

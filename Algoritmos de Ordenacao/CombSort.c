@@ -26,7 +26,7 @@ int main(void){
 	printf("Gerando %d numeros \n",max);
 	srand(time(NULL));
 	for(int i = 0;i<max;i++){
-		vet[i] = rand()%100;
+	    vet[i] = rand()%100;
 	}
 	gap = max/fatorEncolhimento;
 	combSort(vet,gap);
@@ -54,25 +54,25 @@ void combSort(int vet[], int gap){
 	 * Sigamos o exemplo : [2,4,3,6,5,1,8] , gap = 7/1.24 = 5.6, mas como o valor é inteiro ele vai usar apenas o 5.
 	 * 
 	 *  [(c)2,4,3,6,5,(i)1,8] ---> [1,(c)4,3,6,5,2,(i)8]   
-	 *  como 1 < 2, troca !			como 8>4, Não troca!
+	 *   omo 1 < 2, troca !		como 8>4, Não troca!
 	 *
-	 *	Agora que o i == max, se encerra um ciclo , o gap passado para a recursividade nai ser gap/1.24 ( 5/1.24 = 4), dessa forma o gap vai sempre diminuindo até
-	 *  chegar a 1.
+	 * Agora que o i == max, se encerra um ciclo , o gap passado para a recursividade nai ser gap/1.24 ( 5/1.24 = 4), dessa forma o gap vai sempre diminuindo até
+	 * chegar a 1.
 	 *
 	 * Seguindo o exemplo : gap == 4
 	 *
 	 * [(c)1,4,3,6,5(i),2,8] ---> [1,4(c),3,6,5,2(i),8] ---> [1,2,3(c),6,5,4,8(i)]
-	 * como 5>1 Não Troca		  Como 2 < 4 Troca !!		  Como 8>3 , Não Troca 
+	 * como 5>1 Não Troca	      Como 2 < 4 Troca !!         Como 8>3 , Não Troca 
 	 *
 	 * Proxima chamada da recursividade : gap == 4/1.24 == 3
 	 * 
 	 *  [1(c),2,3,6(i),5,4,8] --> [1,2(c),3,6,5(i),4,8] --> [1,2,3(c),6,5,4(i),8] --> [1,2,3,6(c),5,4,8(i)] 
-	 *	Como 6 > 1 não troca	  Como 6 > 1 não troca		Como 6 > 1 não troca	  Como 6 > 1 não troca 
+	 *  Como 6 > 1 não troca       Como 6 > 1 não troca	Como 6 > 1 não troca	   Como 6 > 1 não troca 
 	 *
 	 * Proxima chamada da recursividade : gap == 3/1.24 == 2
 	 * 
 	 *  [1(c),2,3(i),6,5,4,8] --> [1,2(c),3,6(i),5,4,8] --> [1,2,3(c),6,5(i),4,8] --> [1,2,3,6(c),5,4(i),8] --> [1,2,3,4,5(c),6,8(i)]
-	 *	Como 3 > 1 não troca	  Como 6 > 2 Não Troca		Como 5 > 3 Não Troca	  Como 4 < 6 Troca			como 8 > 5 Não Troca
+	 *  Como 3 > 1 não troca      Como 6 > 2 Não Troca	Como 5 > 3 Não Troca	  Como 4 < 6 Troca	    como 8 > 5 Não Troca
 	 */
 	if(gap != 0){
 		int c = 0;

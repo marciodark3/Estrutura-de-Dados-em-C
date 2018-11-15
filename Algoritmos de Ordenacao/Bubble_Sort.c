@@ -2,7 +2,7 @@
  * Uma pequena companhia, BotoCaro, oferece produtos de perfumaria.
  *
  * Um dia, o dono dessa companhia queria saber os produtos lancados desde a abertura da sua pequena lojinha, tanto em ordem crescente como em decrescente.
- * Infelismente o dono dessa companhia DETESTA SQL, e pior de tudo, ele tem um ódio maior de um comando de SQL, o ORDER BY.
+ * Infelizmente o dono dessa companhia DETESTA SQL, e pior de tudo, ele tem um ódio maior de um comando de SQL, o ORDER BY.
  *
  * Rico do jeito que ele é, e com ódio no coração, ele contratou voce, um programador experiente QUE NÃO TEM MEDO DE TRABALHO BRAÇAL
  *
